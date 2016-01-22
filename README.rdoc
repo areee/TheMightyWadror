@@ -1,5 +1,5 @@
 == Ruby on Rails - spring 2016
 
 - Heroku instance: https://arees-ratebeer.herokuapp.com
-	- Breweries (and beers): https://arees-ratebeer.herokuapp.com/breweries
+- Breweries (and beers): https://arees-ratebeer.herokuapp.com/breweries
 
