@@ -11,10 +11,10 @@ class Beer < ActiveRecord::Base
 
     self.ratings.map { |r| sum+=r.score}
 
-    count = self.ratings.count.to_f
-    average = sum/count
+    count = self.ratings.count
+    average = sum/count.to_f
 
-  "Has #{self.ratings.count} ratings, average #{average}" #self.ratings.average(:score) suoraan toimisi myös
+  "Has #{count} #{"rating".pluralize(count)}, average #{average}" #self.ratings.average(:score) suoraan toimisi myös
   end
 
 end
