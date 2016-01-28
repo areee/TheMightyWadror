@@ -5,16 +5,16 @@ class Beer < ActiveRecord::Base
   def average_rating
 
     sum = 0
-    # ratings.each { |num| sum+=num }
+    # self.ratings.all.each do |r|
+    #   sum += r.score
+    # end
 
-    self.ratings.all.each do |r|
-      sum += r.score
-    end
+    self.ratings.map { |r| sum+=r.score}
 
     count = self.ratings.count.to_f
     average = sum/count
 
-  "Has #{self.ratings.count} ratings, average #{average}" #Rating.average(:score) -> 7.5
+  "Has #{self.ratings.count} ratings, average #{average}" #self.ratings.average(:score) suoraan toimisi myös
   end
 
 end
