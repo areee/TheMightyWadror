@@ -17,5 +17,9 @@ class Beer < ActiveRecord::Base
   "Has #{count} #{"rating".pluralize(count)}, average #{average}" #self.ratings.average(:score) suoraan toimisi myös
   end
 
+  def to_s
+    "#{self.name} / #{self.brewery.name}"
+  end
+
 end
 
