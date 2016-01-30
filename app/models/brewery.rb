@@ -1,4 +1,6 @@
 class Brewery < ActiveRecord::Base
+  include RatingAverage
+
   has_many :beers, dependent: :destroy
   has_many :ratings, through: :beers
 
@@ -13,14 +15,14 @@ class Brewery < ActiveRecord::Base
     puts "changed year to #{year}"
   end
 
-  def average_rating
-
-    sum = 0
-    self.ratings.map { |r| sum+=r.score}
-    count = self.ratings.count
-    average = sum/count.to_f
-
-    "Has #{count} #{"rating".pluralize(count)}, average #{average}"
-  end
+  # def average_rating
+  #
+  #   sum = 0
+  #   self.ratings.map { |r| sum+=r.score}
+  #   count = self.ratings.count
+  #   average = sum/count.to_f
+  #
+  #   "Has #{count} #{"rating".pluralize(count)}, average #{average}"
+  # end
 
 end
