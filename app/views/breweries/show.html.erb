@@ -6,7 +6,7 @@
 
 <p>
   <i>
-    Established in
+    Established year:
     <%= @brewery.year %>
   </i>
 </p>
@@ -18,6 +18,14 @@
 <p>
   <% @brewery.beers.each do |beer| %>
       <%= link_to beer.name, beer %>
+  <% end %>
+</p>
+
+<p>
+  <% if @brewery.ratings.empty? %>
+      beer has not yet been rated!
+  <% else %>
+      <%= @brewery.average_rating %>
   <% end %>
 </p>
 
