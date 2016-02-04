@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @user.username %></h1>
-<p>has made <%= @user.ratings.count %> ratings, average <%=  %> </p>
+<p>has made <%= pluralize(@user.ratings.count, 'rating') %>, average <%= @user.average_rating %> </p>
 
 <h2>ratings</h2>
 
