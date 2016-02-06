@@ -8,5 +8,10 @@ class User < ActiveRecord::Base
             format: {with: /\A[A-Z]+[\d]+\z/, message: "must include a capital letter AND a digit"}
   has_many :ratings, dependent: :destroy
   has_many :beers, through: :ratings
-  has_many :beerclubs #, dependent: :destroy
+  has_many :memberships, dependent: :destroy
+  has_many :beerclubs, through: :memberships
+
+  def to_s
+    "#{username}"
+  end
 end
