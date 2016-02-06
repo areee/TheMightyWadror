@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   validates :username, uniqueness: true, length: { minimum: 3, maximum: 15 }
   validates :password, length: {minimum: 4},
-            format: {with: /\A[A-Z]+[\d]+\z/, message: "only allows capital letters and digits"}
+            format: {with: /\A[A-Z]+[\d]+\z/, message: "must include a capital letter AND a digit"}
   has_many :ratings, dependent: :destroy
   has_many :beers, through: :ratings
   has_many :beerclubs #, dependent: :destroy
