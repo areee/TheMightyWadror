@@ -30,6 +30,8 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
+        current_user.beerclubs << @membership.beerclub
+        # @membership.user_id << current_user.id
         format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
         format.json { render :show, status: :created, location: @membership }
       else
