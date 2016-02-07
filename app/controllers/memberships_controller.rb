@@ -29,16 +29,17 @@ class MembershipsController < ApplicationController
     @membership = Membership.new params.require(:membership).permit(:beerclub_id, :user_id) #(membership_params)
 
     respond_to do |format|
-      if @membership.save and not current_user.beerclubs.include? @membership.beerclub
-        current_user.beerclubs << @membership.beerclub
-        # @membership.user_id << current_user.id
-        format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
-        format.json { render :show, status: :created, location: @membership }
-      else
-        @beerclubs = Beerclub.all
-        @users = User.all
-        format.html { render :new }
-        format.json { render json: @membership.errors, status: :unprocessable_entity }
+      if not current_user.memberships.include? @membership.beerclub_id
+        if @membership.save
+          format.html { redirect_to memberships_path, notice: 'Membership was successfully created.' }
+          format.json { render :show, status: :created, location: @membership }
+        else
+          @beerclubs = Beerclub.all
+          @users = User.all
+          # Membership.last.delete
+          format.html { redirect_to new_membership_path, notice: 'You are already in this beerclub! Choose another one.' } #render :new
+          format.json { render json: @membership.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
