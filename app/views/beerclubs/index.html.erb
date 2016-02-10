@@ -6,18 +6,18 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Founded</th>
       <th>City</th>
+      <th>Founded</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @beerclubs.each do |beerclub| %>
+    <% @clubs.each do |beerclub| %>
       <tr>
         <td><%= beerclub.name %></td>
-        <td><%= beerclub.founded %></td>
         <td><%= beerclub.city %></td>
+        <td><%= beerclub.founded %></td>
         <td><%= link_to 'Show', beerclub %></td>
         <td><%= link_to 'Edit', edit_beerclub_path(beerclub) %></td>
         <td><%= link_to 'Destroy', beerclub, method: :delete, data: { confirm: 'Are you sure?' } %></td>

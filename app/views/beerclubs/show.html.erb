@@ -1,19 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @beerclub.name %> <%= @beerclub.city %></h1>
+<h2>
+  <%= "#{@beerclub.name} #{@beerclub.city}" %>
+</h2>
 
 <p>
   Founded <%= @beerclub.founded %>
 </p>
 
-<h2>Members</h2>
+<% if @beerclub.members.any? %>
+
+
+<h3>Members</h3>
 
 <ul>
-  <% @beerclub.users.each do |user| %>
+  <% @beerclub.members.each do |member| %>
       <li>
-        <%= link_to user, user %>
+        <%= link_to member.username, member %>
       </li>
   <% end %>
 </ul>
 
+    <% else %>
+
+    <p>
+      no members
+    </p>
+
+    <% end %>
+
 <%= link_to 'Edit', edit_beerclub_path(@beerclub) %>
+<%= link_to 'Back', beerclubs_path %>

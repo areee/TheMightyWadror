@@ -8,13 +8,13 @@ class Beer < ActiveRecord::Base
   has_many :raters, -> {uniq}, through: :ratings, source: :user
 
   def to_s
-    "#{name} / #{brewery.name}"
+    "#{name} #{brewery.name}"
   end
 
-  def average
-    return 0 if ratings.empty?
-    ratings.map{|r| r.score}.sum / ratings.count.to_f
-  end
+  # def average
+  #   return 0 if ratings.empty?
+  #   ratings.map{|r| r.score}.sum / ratings.count.to_f
+  # end
 
 end
 

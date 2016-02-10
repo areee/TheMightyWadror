@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # määritellään, että metodi current_user tulee käyttöön myös näkymissä
+
   helper_method :current_user
 
   def current_user

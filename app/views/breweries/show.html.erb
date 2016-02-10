@@ -6,12 +6,12 @@
 
 <p>
   <i>
-    Established year:
+    Established at
     <%= @brewery.year %>
   </i>
 </p>
 <p>
-  Number of beers:
+  Number of beers
   <%= @brewery.beers.count %>
 </p>
 
@@ -24,10 +24,11 @@
 
 <p>
   <% if @brewery.ratings.empty? %>
-      beer has not yet been rated!
+      beer has no ratings
   <% else %>
       brewery has <%= pluralize(@brewery.ratings.count, 'rating') %>, average <%= @brewery.average_rating %>
   <% end %>
 </p>
 
 <%= link_to 'Edit', edit_brewery_path(@brewery) %>
+<%= link_to 'Back', breweries_path %>
