@@ -20,9 +20,4 @@ RSpec.describe Beer, type: :model do
     expect(Beer.count).to eq(0)
   end
 
-  it "is the only rated if only one rating" do
-    beer = FactoryGirl.create(:beer)
-    rating = FactoryGirl.create(:rating, beer: beer, user: user)
-  end
-
 end
