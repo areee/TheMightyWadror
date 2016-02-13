@@ -25,4 +25,22 @@ describe "Rating" do
     expect(beer1.ratings.count).to eq(1)
     expect(beer1.average_rating).to eq(15.0)
   end
+
+  describe "with created ratings" do
+    let!(:rating1) { FactoryGirl.create :rating, beer: beer1, user: user }
+    let!(:rating2) { FactoryGirl.create :rating, beer: beer1, user: user }
+    let!(:rating3) { FactoryGirl.create :rating, beer: beer1, user: user }
+
+    it "is listed and sum is calculated in ratings site" do
+      visit ratings_path
+
+      expect(page).to have_content 'Number of ratings: 3'
+      expect(page).to have_content 'iso 3 10 Pekka'
+      expect(page).to have_content 'iso 3 10 Pekka'
+      expect(page).to have_content 'iso 3 10 Pekka'
+
+    end
+  end
+
+
 end
