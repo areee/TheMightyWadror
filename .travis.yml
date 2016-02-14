@@ -8,3 +8,10 @@ script:
  - RAILS_ENV=test bundle exec rake db:migrate --trace
  - bundle exec rake db:test:prepare
  - bundle exec rspec -fd spec/
+
+ deploy:
+   provider: heroku
+   app: arees-ratebeer
+   api_key:
+     secure: "jwcml0zEJGW0GbP5Xb0QOGeezOSccsVXPizbjJmEIia1NN6V9rqaInJAv8r9yOgPaUAC5ySI8TvCVn/NO/cus/31aXgsfPLVTd12ymkUr9jEveyC9ej27mV1PKVPSE3KrctFNxSgZHm64mo8sIxtvK5A2viSLQSMIkOCbzUNnRqjbZ3InWBbp4JTURVJGBuWtGRGB/ImAypSaigBTx2MlDPdDIsQ/nTFyr3jgwkUGqz13jXn3x9J2E4j63WqGe3C4M2lm0t5Qvg/jiwBqvjv28vcZhrT4zZSTmw5fdhz4ucnvFHJjdCSXItJZEs3OAovyNvis4tSH3HGgok9og8E5xGf3Ci0ayRpz3BGaCjnOpA+0Rdv83izkQOxoCSQTRGclhN/d+2zNS5OqoZDNeKP9BCmABPLZRVPooOQXxI9757phrd7ci6g0iIvsSB//gmNvydf6mIxHVn0SNvTjkvRPULTJIHKkRmCam3lFB6C2YIt4jAniDJZPU2SVUrZ+l184dUfOXmSqnYngUQBC4rHN/lbrAntSR66uz0aRwW4Clrw+h+G6lBPd1GoI91k+GQ7HHNGgIdtxuMYhcMvN4CMO9ps4N1X9rtcVodnl2C2ZvMxvaQUBZXLESLz2g20xVH3xOJrj6e77MBjFsmeA5ajzFPBOxZ/7vbxBq54TnhrrVg="
+   run: "rake db:migrate"
