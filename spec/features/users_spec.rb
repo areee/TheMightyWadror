@@ -56,7 +56,6 @@ describe "User" do
       sign_in(username: "Pekka", password: "Foobar1")
       visit user_path(user)
       page.all('a')[11].click
-      sao
       expect(page).to have_content 'Has made 2 ratings, average 15.0'
       expect(page).to have_content 'iso 3 10 delete'
       expect(page).to have_content 'Karhu 20 delete'
