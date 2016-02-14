@@ -62,3 +62,4 @@ group :test do
 end
 
 ruby '2.3.0'
+gem 'coveralls', require: false
