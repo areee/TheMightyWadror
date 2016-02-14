@@ -1,3 +1,0 @@
-== Ruby on Rails - spring 2016
-
-- Heroku instance: https://arees-ratebeer.herokuapp.com
