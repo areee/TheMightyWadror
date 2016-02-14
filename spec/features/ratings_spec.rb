@@ -33,7 +33,7 @@ describe "Rating" do
     let!(:rating3) { FactoryGirl.create :rating, beer: beer1, user: user }
     let!(:rating4) { FactoryGirl.create :rating2, beer: beer2, user: user2 }
 
-    it "is listed and sum is calculated in ratings site" do
+    it "is listed and sum is calculated in ratings page" do
       visit ratings_path
       expect(page).to have_content 'Number of ratings: 4'
       expect(page).to have_content 'iso 3 10 Pekka'
@@ -41,16 +41,6 @@ describe "Rating" do
       expect(page).to have_content 'iso 3 10 Pekka'
       expect(page).to have_content 'Karhu 20 Kaisa'
     end
-
-    it "are showed in current user's site" do
-      visit user_path(user)
-      sao
-      expect(page).to have_content 'Has made 3 ratings, average 13.333333333333334'
-        expect(page).to have_content 'iso 3 10 delete'
-      expect(page).to have_content 'Karhu 20 delete'
-      expect(page).to have_content 'iso 3 10 delete'
-    end
-
   end
 
 
