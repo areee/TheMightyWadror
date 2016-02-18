@@ -3,15 +3,14 @@ require 'rails_helper'
 include Helpers
 
 describe "User" do
-  create_all_needed
-
-  before :each do
-    # FactoryGirl.create :user
-  end
+  let!(:user) { FactoryGirl.create :user }
 
   describe "who has signed up" do
     it "can signin with right credentials" do
-      sign_in(username: "Pekka", password: "Foobar1")
+      visit signin_path
+      fill_in('username', with: 'Pekka')
+      fill_in('password', with: 'Foobar1')
+      click_button('Log in')
 
       expect(page).to have_content 'Welcome back!'
       expect(page).to have_content 'Pekka'
@@ -37,33 +36,23 @@ describe "User" do
     }.to change { User.count }.by(1)
   end
 
-  describe "with created ratings" do
-    let!(:rating1) { FactoryGirl.create :rating, beer: beer1, user: user }
-    let!(:rating2) { FactoryGirl.create :rating2, beer: beer2, user: user }
-    let!(:rating3) { FactoryGirl.create :rating, beer: beer1, user: user }
-    let!(:rating4) { FactoryGirl.create :rating2, beer: beer2, user: user2 }
-
-    it "when signed in, ratings are showed in current user's page" do
-      sign_in(username: "Pekka", password: "Foobar1")
-      visit user_path(user)
-      expect(page).to have_content 'Has made 3 ratings, average 13.333333333333334'
-      expect(page).to have_content 'iso 3 10 delete'
-      expect(page).to have_content 'Karhu 20 delete'
-      expect(page).to have_content 'iso 3 10 delete'
+  describe "have rated some beers" do
+    before :each do
+      @brewery = FactoryGirl.create :brewery, name: "Sierra Nevada"
+      other_brewery = FactoryGirl.create :brewery
+      create_beers_with_ratings(user, "lager", other_brewery, 10, 20, 15)
+      create_beers_with_ratings(user, "IPA", @brewery, 25, 20)
+      create_beers_with_ratings(user, "stout", other_brewery, 20, 23, 22)
     end
 
-    it "when deleted own rating, it is deleted" do
-      sign_in(username: "Pekka", password: "Foobar1")
+    it "the favorite style is shown at user's page" do
       visit user_path(user)
-      page.all('a')[11].click
-      expect(page).to have_content 'Has made 2 ratings, average 15.0'
-      expect(page).to have_content 'iso 3 10 delete'
-      expect(page).to have_content 'Karhu 20 delete'
-
+      expect(page).to have_content 'Favorite style IPA'
     end
 
-
+    it "the favorite brewery is shown at user's page" do
+      visit user_path(user)
+      expect(page).to have_content 'Favorite brewery Sierra Nevada'
+    end
   end
-
-
 end

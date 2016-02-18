@@ -4,28 +4,30 @@ include Helpers
 
 describe "Beer" do
   before :each do
-    FactoryGirl.create :user
-    sign_in(username: "Pekka", password: "Foobar1")
+    FactoryGirl.create :brewery, name: "testbrew"
   end
 
-  it "can be added when name is not nul" do
-    visit new_beer_path
-    fill_in('beer_name', with: 'Testiolut')
+  describe "if a user logged in" do
+    before :each do
+      FactoryGirl.create :user
+      sign_in(username: "Pekka", password: "Foobar1")
+    end
 
-    expect {
+    it "a new beer is created if a valid name specified" do
+      visit new_beer_path
+      fill_in('beer_name', with: 'Testiolut')
+      select('Lager', from: 'beer[style]')
+      expect {
+        click_button "Create Beer"
+      }.to change { Beer.count }.from(0).to(1)
+    end
+
+    it "is not created when name not valid" do
+      visit new_beer_path
       click_button "Create Beer"
-    }.to change { Beer.count }.from(0).to(1)
+      expect(Beer.count).to eq(0)
+      expect(page).to have_content 'prohibited this beer from being saved'
+      expect(page).to have_content "Name can't be blank"
+    end
   end
-
-  it "is not saved when name is not valid" do
-    visit new_beer_path
-    click_button "Create Beer"
-
-    expect(page).to have_content '1 error prohibited this beer from being saved:'
-    expect(page).to have_content 'Name can\'t be blank'
-
-    expect(Beer.count).to eq(0)
-
-  end
-
 end

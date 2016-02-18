@@ -11,23 +11,24 @@
 <% if @beerclub.members.any? %>
 
 
-<h3>Members</h3>
+    <h3>Members</h3>
 
-<ul>
-  <% @beerclub.members.each do |member| %>
-      <li>
-        <%= link_to member.username, member %>
-      </li>
-  <% end %>
-</ul>
+    <ul>
+      <% @beerclub.members.each do |member| %>
+          <li>
+            <%= link_to member.username, member %>
+          </li>
+      <% end %>
+    </ul>
 
-    <% else %>
+<% else %>
 
     <p>
       no members
     </p>
 
-    <% end %>
+<% end %>
 
-<%= link_to 'Edit', edit_beerclub_path(@beerclub) if current_user %>
-<%= link_to 'Back', beerclubs_path %>
+<%= link_to 'Edit', edit_beerclub_path(@beerclub) if current_user %><br>
+<%= link_to 'Destroy the club', @beerclub, method: :delete, data: {confirm: 'Are you sure?'} if current_user %>
+<!--<%= link_to 'Back', beerclubs_path %>-->

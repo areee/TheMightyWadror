@@ -16,9 +16,9 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  def to_s
-    "#{username}"
-  end
+  # def to_s
+  #   "#{username}"
+  # end
 
   def favorite_beer
     return nil if ratings.empty?
@@ -27,8 +27,28 @@ class User < ActiveRecord::Base
 
   def favorite_style
     return nil if ratings.empty?
-    # ratings.first.beer.style
-    # ratings.order(score: :desc).limit(1).first.beer
+
+    rated = ratings.map { |r| r.beer.style }.uniq
+    rated.sort_by { |style| -rating_of_style(style) }.first
+  end
+
+  def favorite_brewery
+    return nil if ratings.empty?
+
+    rated = ratings.map { |r| r.beer.brewery }.uniq
+    rated.sort_by { |brewery| -rating_of_brewery(brewery) }.first
+  end
+
+  private
+
+  def rating_of_style(style)
+    ratings_of = ratings.select { |r| r.beer.style==style }
+    ratings_of.map(&:score).inject(&:+) / ratings_of.count.to_f
+  end
+
+  def rating_of_brewery(brewery)
+    ratings_of = ratings.select { |r| r.beer.brewery==brewery }
+    ratings_of.map(&:score).inject(&:+) / ratings_of.count.to_f
   end
 
 end

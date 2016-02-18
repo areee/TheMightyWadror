@@ -24,11 +24,11 @@
 
 <p>
   <% if @brewery.ratings.empty? %>
-      beer has no ratings
+      brewery has no ratings
   <% else %>
       brewery has <%= pluralize(@brewery.ratings.count, 'rating') %>, average <%= @brewery.average_rating %>
   <% end %>
 </p>
 
-<%= link_to 'Edit', edit_brewery_path(@brewery) if current_user %>
-<%= link_to 'Back', breweries_path %>
+<%= link_to 'Edit', edit_brewery_path(@brewery) if current_user %><br>
+<%= link_to 'Destroy the brewery', @brewery, method: :delete, data: {confirm: 'Are you sure?'} if current_user %>
