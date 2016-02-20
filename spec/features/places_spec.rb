@@ -36,7 +36,6 @@ describe "Places" do
     visit places_path
     fill_in('city', with: 'ogeli')
     click_button "Search"
-    sao
 
     expect(page).to have_content "No locations in ogeli"
   end

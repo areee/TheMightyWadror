@@ -10,6 +10,8 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'helpers'
 require 'webmock/rspec'
+
+ENV['APIKEY']="1eb1b16b1f413a5e80312726a6861fc0"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
