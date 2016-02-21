@@ -11,8 +11,12 @@ class BeerclubsController < ApplicationController
   # GET /beerclubs/1
   # GET /beerclubs/1.json
   def show
-    @membership = Membership.new
-    @membership.beerclub = @beerclub
+    if current_user.beerclubs.include? @beerclub
+      @membership = current_user.memberships.find_by beerclub_id: @beerclub.id
+    else
+      @membership = Membership.new
+      @membership.beerclub = @beerclub
+    end
   end
 
   # GET /beerclubs/new
@@ -68,6 +72,8 @@ class BeerclubsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_beerclub
     @beerclub = Beerclub.find(params[:id])
+    # @membership = Membership.new
+    # @membership.beerclub = @beerclub
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
