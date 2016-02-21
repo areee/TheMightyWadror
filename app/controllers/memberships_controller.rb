@@ -15,8 +15,9 @@ class MembershipsController < ApplicationController
   # GET /memberships/new
   def new
     @membership = Membership.new
-    @clubs = Beerclub.all.reject { |club| current_user.in? club.members }
-    # @users = User.all
+    @clubs = Beerclub.all.reject { |club| current_user.in? club.members } #kaikki klubit, joihin ei vielä kuulu
+      # @clubs = Beerclub.all.select { |club| current_user.in? club.members } #kaikki, joihin kuuluu
+      # @clubs = Beerclub.all
   end
 
   # GET /memberships/1/edit

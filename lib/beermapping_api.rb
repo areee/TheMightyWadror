@@ -7,7 +7,8 @@ class BeermappingApi
   private
 
   def self.fetch_places_in(city)
-    url = "http://beermapping.com/webservice/locquery/#{key}/"
+    url = "http://beermapping.com/webservice/loccity/#{key}/"
+    # url = 'http://stark-oasis-9187.herokuapp.com/api/'
 
     response = HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
     places = response.parsed_response["bmp_locations"]["location"]
@@ -28,6 +29,7 @@ class BeermappingApi
 
   def self.get_place(id)
     url = "http://beermapping.com/webservice/locquery/#{key}/"
+    # url = 'http://stark-oasis-9187.herokuapp.com/api/'
 
     response = HTTParty.get "#{url}/#{id}"
     place = response.parsed_response["bmp_locations"]["location"]
@@ -36,7 +38,4 @@ class BeermappingApi
     return Place.new(place)
   end
 
-  def beermapping_url
-    "http://beermapping.com/webservice/locquery/#{key}/"
-  end
 end

@@ -22,9 +22,4 @@ class PlacesController < ApplicationController
     end
   end
 
-  private
-
-  # def set_place
-  #   @place = Place.find(params[:id])
-  # end
 end

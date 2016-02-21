@@ -11,10 +11,15 @@
         </div>
     <% end %>
 
-    <div class="field">
-      <%= f.select :beerclub_id, options_from_collection_for_select(@clubs, :id, :name) %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+
+    <% if @clubs.first.nil? %>
+        you belong already to all clubs
+    <% else %>
+        <div class="field">
+          <%= f.select :beerclub_id, options_from_collection_for_select(@clubs, :id, :name) %>
+        </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+    <% end %>
 <% end %>
