@@ -29,6 +29,14 @@
 
 <% end %>
 
+<% if current_user %>
+
+    <%= form_for(@membership) do |f| %>
+        <%= f.hidden_field :beerclub_id %>
+        <%= f.submit value: "join the club" %>
+    <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_beerclub_path(@beerclub) if current_user %><br>
 <%= link_to 'Destroy the club', @beerclub, method: :delete, data: {confirm: 'Are you sure?'} if current_user %>
 <!--<%= link_to 'Back', beerclubs_path %>-->
