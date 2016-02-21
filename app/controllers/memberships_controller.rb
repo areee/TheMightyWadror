@@ -34,7 +34,12 @@ class MembershipsController < ApplicationController
     if not current_user.in? club.members and @membership.save
       current_user.memberships << @membership
       @membership.save
-      redirect_to @membership.user, notice: "You've joined to #{@membership.beerclub.name}"
+      # if new_membership_path
+      #   redirect_to @membership.user, notice: "You've joined to #{@membership.beerclub.name}"
+      redirect_to club, notice: "#{current_user.username}, welcome to the club"
+      # else
+      #   redirect_to @beerclub, notice: "#{current_user.username}, welcome to the club"
+      # end
     else
       @clubs = Beerclub.all
       render :new
