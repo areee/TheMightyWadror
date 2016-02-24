@@ -65,3 +65,8 @@ end
 ruby '2.3.0'
 gem 'coveralls', require: false
 gem 'httparty'
+
+gem 'bootstrap-sass'
+group :development do
+  gem 'rails_layout'
+end
