@@ -2,17 +2,22 @@
 
 <h1><%= @style.name %></h1>
 
-<p>
+<blockquote>
   <%= @style.description %>
-</p>
+</blockquote>
 
-<!--<h2>beers</h2>-->
+<h3>beers</h3>
 
-<!--<ul>-->
-  <!--<% @style.beers.each do |beer| %>-->
-      <!--<li> <%= beer %> <%= link_to beer.name, beer_path %> </li>-->
-  <!--<% end %>-->
-<!--</ul>-->
+<ul>
+  <% @style.beers.each do |beer| %>
+      <li>
+        <%= link_to beer.name, beer_path %>
+        <em>
+          <%= link_to beer.brewery.name, beer.brewery %>
+        </em>
+      </li>
+  <% end %>
+</ul>
 
 <%= link_to 'Edit', edit_style_path(@style) %><br>
 <%= link_to 'Destroy the style', @style, method: :delete, data: {confirm: 'Are you sure?'} %>

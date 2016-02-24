@@ -36,7 +36,7 @@ class MembershipsController < ApplicationController
       @membership.save
       # if new_membership_path
       #   redirect_to @membership.user, notice: "You've joined to #{@membership.beerclub.name}"
-      redirect_to club, notice: "#{current_user.username}, welcome to the club"
+      redirect_to beerclub_path(club), notice: "#Welcome to #{@membership.beerclub.name}"
       # else
       #   redirect_to @beerclub, notice: "#{current_user.username}, welcome to the club"
       # end
@@ -86,7 +86,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership.destroy
     respond_to do |format|
-      format.html { redirect_to @membership.user, notice: "Membership in #{@membership.beerclub.name} ended." }
+      format.html { redirect_to user_path(@membership.user), notice: "Membership was successfully destroyed." }
       format.json { head :no_content }
     end
   end
