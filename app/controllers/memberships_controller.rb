@@ -22,6 +22,8 @@ class MembershipsController < ApplicationController
 
   # GET /memberships/1/edit
   def edit
+    @membership = Membership.new
+    @clubs = Beerclub.all.reject { |club| current_user.in? club.members } #kaikki klubit, joihin ei vielä kuulu
   end
 
   # POST /memberships

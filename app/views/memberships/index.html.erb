@@ -2,7 +2,7 @@
 
 <h1>Listing Memberships</h1>
 
-<table>
+<table class="table table-striped table-hover table-bordered">
   <thead>
   <tr>
     <th>User</th>
@@ -14,8 +14,8 @@
   <tbody>
   <% @memberships.each do |membership| %>
       <tr>
-        <td><%= membership.user.username %></td>
-        <td><%= membership.beerclub.name %></td>
+        <td><%= link_to membership.user.username, user_path(membership.user_id) %></td>
+        <td><%= link_to membership.beerclub.name, beerclub_path(membership.beerclub_id) %></td>
         <td><%= link_to 'Show', membership %></td>
         <td><%= link_to 'Edit', edit_membership_path(membership) %></td>
         <td><%= link_to 'Destroy', membership, method: :delete, data: {confirm: 'Are you sure?'} %></td>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Membership', new_membership_path %>
+<%= link_to 'New Membership', new_membership_path, class: "btn btn-primary" %>
