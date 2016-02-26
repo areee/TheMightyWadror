@@ -1,29 +1,40 @@
-<h1>Ratings static</h1>
+<h1>Rating statistics</h1>
 
 <p>Number of ratings: <%= @ratings.count %> </p>
 
-<h2>Best breweries</h2>
+<div class="row">
+  <div class="col-xs-4 col-sm-5">
+    <h2>Best breweries</h2>
+    <%= render 'list', source: @top_breweries %>
+  </div>
 
-<%= render 'list', source: @top_breweries %>
+  <div class="col-xs-4 col-sm-4">
+    <h2>Best beers</h2>
+    <%= render 'list', source: @top_beers %>
+  </div>
 
-<h2>Best beers</h2>
+  <div class="col-xs-4 col-sm-2">
+    <h2>Best styles</h2>
+    <%= render 'list', source: @top_styles %>
+  </div>
+</div>
 
-<%= render 'list', source: @top_beers %>
 
-<h2>Best styles</h2>
 
-<%= render 'list', source: @top_styles %>
+
+
+
 
 <h2>Most active users</h2>
 
-<table class="table table">
+<table class="table table-striped table-hover table-bordered">
   <thead>
   <tr>
     <th></th>
-    <th>favorite beer</th>
-    <th>favorite style</th>
-    <th>favorite brewery</th>
-    <th>ratings</th>
+    <th>Favorite beer</th>
+    <th>Favorite style</th>
+    <th>Favorite brewery</th>
+    <th>Ratings</th>
   </tr>
   </thead>
 
