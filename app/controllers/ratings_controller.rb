@@ -2,6 +2,8 @@ class RatingsController < ApplicationController
 
   def index
     @ratings = Rating.all
+    byebug
+    @recent = Rating.recent
   end
 
   def new

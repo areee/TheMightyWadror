@@ -1,9 +1,19 @@
-<h1>List of ratings</h1>
+<h1>Ratings static</h1>
 
 <p>Number of ratings: <%= @ratings.count %> </p>
 
+<!--<ul>-->
+<!-
+<% @ratings.each do |rating| %>-->
+    <!--<li> <%= rating %> <%= link_to rating.user.username, rating.user %> </li>-->
+    <!--
+<% end %>-->
+<!--</ul>-->
+
+
+<h2>Recent ratings</h2>
 <ul>
-  <% @ratings.each do |rating| %>
+  <% @recent.each do |rating| %>
       <li> <%= rating %> <%= link_to rating.user.username, rating.user %> </li>
   <% end %>
 </ul>
