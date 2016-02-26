@@ -18,5 +18,12 @@ class Beer < ActiveRecord::Base
   #   ratings.map{|r| r.score}.sum / ratings.count.to_f
   # end
 
+  def self.top(n)
+    # palauta listalta parhaat n kappaletta
+    # miten? ks. http://www.ruby-doc.org/core-2.1.0/Array.html
+    n = n-1
+    Beer.all.sort_by { |b| -(b.average_rating||0) }[0..n]
+  end
+
 end
 
