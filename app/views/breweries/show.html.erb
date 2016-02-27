@@ -26,7 +26,7 @@
 <% if @brewery.ratings.empty? %>
     <p>beers of the brewery have not been rated!</p>
 <% else %>
-    <p>Has <%= pluralize(@brewery.ratings.count, 'rating') %>, average <%= @brewery.average_rating %></p>
+    <p>Has <%= pluralize(@brewery.ratings.count, 'rating') %>, average <%= round(@brewery.average_rating) %></p>
 <% end %>
 
 <% if current_user %>

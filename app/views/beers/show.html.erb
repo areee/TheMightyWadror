@@ -11,7 +11,7 @@
   <% if @beer.ratings.empty? %>
       beer has not yet been rated!
   <% else %>
-      beer has <%= pluralize(@beer.ratings.count, 'rating') %>, average <%= @beer.average_rating %>
+      beer has <%= pluralize(@beer.ratings.count, 'rating') %>, average <%= round(@beer.average_rating) %>
   <% end %>
 </p>
 
@@ -26,6 +26,6 @@
         <%= f.submit class: "btn btn-primary" %>
     <% end %>
 
-    <%= link_to 'Edit', edit_beer_path(@beer), class:"btn btn-primary" if current_user %>
-    <%= link_to 'Destroy the beer', @beer, class:"btn btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
+    <%= link_to 'Edit', edit_beer_path(@beer), class: "btn btn-primary" %>
+    <%= link_to 'Destroy the beer', @beer, class: "btn btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
 <% end %>
