@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   resources :places, only: [:index, :show]
   post 'places', to: 'places#search'
 
+  resources :breweries do
+    post 'toggle_activity', on: :member
+  end
+
   root 'breweries#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
