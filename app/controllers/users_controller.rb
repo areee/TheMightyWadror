@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :if_user_has_banned, only: :show
 
   # GET /users
   # GET /users.json

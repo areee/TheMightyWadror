@@ -13,10 +13,19 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_that_signed_in
-    redirect_to signin_path, notice: 'you should be signed in' if current_user.nil?
+    redirect_to signin_path, notice: 'You should be signed in' if current_user.nil?
   end
 
   def ensure_that_is_admin
-    redirect_to :back, notice: 'this action is only allowed for admins' unless current_user.admin
+    redirect_to :back, notice: 'This action is only allowed for admins' unless current_user.admin
+  end
+
+  def if_user_has_banned
+   unless current_user.nil?
+     if current_user.banned
+      session[:user_id] = nil
+      redirect_to :back, notice: 'Your account is frozen, please contact admin'
+     end
+   end
   end
 end
