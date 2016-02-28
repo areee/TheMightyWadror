@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     post 'toggle_activity', on: :member
   end
 
+resources :users do
+    post 'toggle_banned', on: :member
+  end
+
   root 'breweries#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
