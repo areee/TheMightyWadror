@@ -41,10 +41,10 @@
   <% end %>
 </ul>
 
-<% if current_user.admin %>
-<% if @user.banned %>
+<% if not current_user.nil? %>
+<% if current_user.admin and @user.banned %>
 <%= link_to "reactivate account", toggle_banned_user_path(@user.id), method: :post, class: "btn btn-danger" %>
-<% else %>
+<% elsif not @user.banned %>
 <%= link_to "froze account", toggle_banned_user_path(@user.id), method: :post, class: "btn btn-danger" %>
 <% end %>
 <% end %>
