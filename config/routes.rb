@@ -22,7 +22,9 @@ Rails.application.routes.draw do
 
 resources :users do
     post 'toggle_banned', on: :member
-  end
+end
+
+  get 'beerlist', to:'beers#list'
 
   root 'breweries#index'
 
